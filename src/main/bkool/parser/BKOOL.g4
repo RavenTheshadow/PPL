@@ -8,11 +8,18 @@ options {
 	language = Python3;
 }
 
-program: EOF;
+program: (vardecl ';' | funcdecl)+ EOF;
 
-// YOUR CODE HERE
+vardecl:  ('int' | 'float') ID (',' ID)*;
+funcdecl: ('int' | 'float') ID '(' vardecl (';' vardecl)* ')' 'body';
 
-WS: [ \t\r\n]+ -> skip;
+
+
+body: 'body';
+
+ID: [a-zA-Z]+;
+
+WS: [ \t\r\n] -> skip;
 
 ERROR_CHAR: . {raise ErrorToken(self.text)};
 UNCLOSE_STRING: . {raise ErrorToken(self.text)};
