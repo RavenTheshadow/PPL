@@ -8,16 +8,11 @@ options {
 	language = Python3;
 }
 
-program: (vardecl ';' | funcdecl)+ EOF;
+program: (vardecl | funcdecl)+ EOF;
 
-vardecl:  ('int' | 'float') ID (',' ID)*;
-funcdecl: ('int' | 'float') ID '(' vardecl (';' vardecl)* ')' 'body';
+vardecl: 'vardecl' ;
 
-
-
-body: 'body';
-
-ID: [a-zA-Z]+;
+funcdecl: 'funcdecl' ;
 
 WS: [ \t\r\n] -> skip;
 
